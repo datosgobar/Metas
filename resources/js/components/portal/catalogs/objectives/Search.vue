@@ -32,7 +32,21 @@
 import debounce from "lodash/debounce";
 import ObjectiveCard from './ObjectiveCard'
 export default {
-  props: ['fetchUrl','categories','forceCategory'],
+  props: {
+    fetchUrl: {
+      type: String,
+      required: true
+    },
+    categories: {
+      type: Array,
+      default: () => []
+    },
+    forceCategory: {
+      type: Number,
+      default: null
+    }
+  },
+  //props: ['fetchUrl','categories','forceCategory'],
   components: {
     ObjectiveCard
   },
@@ -126,7 +140,7 @@ export default {
 
 <style lang="scss" scoped>
 .category-active{
-  background-color: #2c59fb !important;
+  background-color: var(--primary) !important;
   color: #FFF !important;
   i{
   color: #FFF !important;
