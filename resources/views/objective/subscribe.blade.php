@@ -1,7 +1,7 @@
 @if(Auth::user())
   @if (Auth::user()->hasVerifiedEmail())
     @if(!$objective->isSubscriber(Auth::user()->id))
-      <div class="card bg-primary border-0 mb-3">
+      <div class="card bg-argentina border-0 mb-3">
         <div class="card-body d-flex justify-content-between align-items-center">      
           <i class="fas fa-bullhorn fa-2x text-white animate__animated animate__tada m-2 mr-3"></i>
           <div class="text-right">
@@ -28,7 +28,7 @@
       </div>
     @endif
   @else
-  <div class="card bg-primary border-0 mb-3">
+  <div class="card bg-argentina border-0 mb-3">
     <div class="card-body d-flex justify-content-between align-items-center">
       <i class="fas fa-exclamation-triangle fa-2x text-white animate__animated animate__tada m-2 mr-3"></i>
       <div class="text-right text-white">
@@ -39,7 +39,7 @@
   </div>
   @endif
 @else
-<div class="card bg-primary border-0 mb-3">
+<div class="card bg-argentina border-0 mb-3">
     <div class="card-body d-flex justify-content-between align-items-center">      
       <i class="fas fa-bullhorn fa-2x text-white animate__animated animate__tada m-2 mr-3"></i>
       <div class="text-right">

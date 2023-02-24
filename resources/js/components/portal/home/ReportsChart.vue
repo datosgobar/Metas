@@ -37,7 +37,7 @@ export default {
       return [
         {
           label: 'Reportes',
-          backgroundColor: '#2c59fb',
+          backgroundColor: '#0072bb',
           data: this.chartData.map( data => data.count )
         }
       ]

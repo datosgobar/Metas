@@ -94,6 +94,6 @@ export default {
 <style lang="scss" scoped>
 .icon-select:hover{
   cursor: pointer;
-  color: #2c59fb;
+  color: var(--primary);
 }
 </style>

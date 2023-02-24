@@ -15,7 +15,7 @@
       </div>
     </div>
     @else
-    <div class="card bg-primary border-0 shadow-sm">
+    <div class="card bg-argentina border-0 shadow-sm">
       <div class="card-body p-3 px-lg-5 d-flex justify-content-between align-items-center my-3">      
         <i class="fas fa-bullhorn fa-2x text-white animate__animated animate__tada animate__infinite m-2 mr-3"></i>
         <div class="text-right">
@@ -30,7 +30,7 @@
     </div>
     @endif
   @else
-  <div class="card bg-primary border-0 shadow-sm">
+  <div class="card bg-argentina border-0 shadow-sm">
     <div class="card-body p-3 px-lg-5  d-flex justify-content-between align-items-center my-3">
       <i class="fas fa-exclamation-triangle fa-2x text-white animate__animated animate__tada animate__infinite m-2 mr-3"></i>
       <div class="text-right text-white">
@@ -41,7 +41,7 @@
   </div>
   @endif
 @else
-<div class="card bg-primary border-0 shadow-sm">
+<div class="card bg-argentina border-0 shadow-sm">
   <div class="card-body p-3 px-lg-5 d-flex justify-content-between align-items-center my-3">      
     <i class="fas fa-bullhorn fa-2x text-white animate__animated animate__tada animate__infinite m-2 mr-3"></i>
     <div class="text-right">

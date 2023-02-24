@@ -1,4 +1,4 @@
-<div id="footer">
+<div id="footer" class="bg-light">
   <div class="container">
     <div class="row text-smaller text-center text-lg-left">
       <div class="col-lg-4 mb-2 mb-lg-0">
@@ -24,17 +24,11 @@
     </div>
   </div>
 </div>
-<div class="bg-light">
+<div class="bg-argentina">
   <div id="post-footer" class="container">
-    <div class="row py-3 text-center">
+    <div class="row py-4">
       <div class="col-12">
-
-        <img src="{{asset('img/der-black.svg')}}" class="footer-logo" alt="Democracia en Red">
-        <img src="{{asset('img/eu-flag.svg')}}" class="footer-logo-eu" alt="Democracia en Red">
-      <br>
-      <p>
-      Desarrollado por Democracia en Red con el apoyo de la Unión Europea
-      </p>
+        <img src="{{asset('img/primerolagente.svg')}}" class="footer-logo" alt="Democracia en Red">
       </div>
     </div>
   </div>

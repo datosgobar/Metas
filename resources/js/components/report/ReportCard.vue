@@ -1,9 +1,9 @@
 <template>
-  <div class="card shadow-sm border-secondary w-100 ml-0 ml-sm-3 mb-3">
-    <div class="card-body text-secondary">
-      <p class="mb-3 float-lg-right ml-lg-4  text-secondary text-right"><i class="text-primary" :class="`fas ${getReportIcon(report.type)}`"></i>&nbsp;{{report.type_label}}</p>
-      <p class="text-smaller my-2"><i :class="`far fa-dot-circle text-${report.goal.status}`"></i>&nbsp;<a :href="report.goal.url" class="text-secondary">{{report.goal.title}}</a></p>
-      <h5 class="is-700 my-2"><a :href="report.url" class="text-secondary">{{report.title}}</a></h5>
+  <div class="card shadow-sm w-100 ml-0 ml-sm-3 mb-3">
+    <div class="card-body">
+      <p class="mb-3 float-lg-right ml-lg-4 text-right"><i class="text-primary" :class="`fas ${getReportIcon(report.type)}`"></i>&nbsp;{{report.type_label}}</p>
+      <p class="text-smaller my-2"><i :class="`far fa-dot-circle text-${report.goal.status}`"></i>&nbsp;<a :href="report.goal.url" class="text-black">{{report.goal.title}}</a></p>
+      <h5 class="is-700 my-2"><a :href="report.url" class="">{{report.title}}</a></h5>
       <p class="text-smaller mb-0">{{shortString(report.content, 250)}}</p>
       <p class="text-muted text-smaller mt-1 mb-2">Publicado {{report.published_at}}</p>
       <h6 class="is-600" v-if="report.latest_comments.length">Ultimos comentarios&nbsp;&nbsp;<a :href="`${report.url}#comentarios`" class="text-smallest is-400">Ver todos<i class="fas fa-arrow-right fa-fw"></i></a></h6>

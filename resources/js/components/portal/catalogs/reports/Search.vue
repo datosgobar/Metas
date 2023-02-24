@@ -83,12 +83,12 @@ export default {
         {
           id: 'reached',
           title: 'Alcanzada',
-          color: '#2eda54'
+          color: '#00b7ef'
         },
         {
           id: 'ongoing',
           title: 'En progreso',
-          color: '#ffa51e'
+          color: '#f79200'
         },
         {
           id: 'inactive',
@@ -98,7 +98,7 @@ export default {
         {
           id: 'delayed',
           title: 'No cumplida',
-          color: '#f15454'
+          color: '#d172ae'
         },
       ]
     }
@@ -183,21 +183,21 @@ export default {
 
 <style lang="scss" scoped>
 .type-active{
-  background-color: #2c59fb !important;
+  background-color: var(--primary) !important;
   color: #FFF !important;
   i{
   color: #FFF !important;
   }
 }
 .status-active{
-  background-color: #2c59fb !important;
+  background-color: var(--primary) !important;
   color: #FFF !important;
   i{
   color: #FFF !important;
   }
 }
 .mappeable-active{
-  background-color: #2c59fb !important;
+  background-color: var(--primary) !important;
   color: #FFF !important;
   i{
   color: #FFF !important;

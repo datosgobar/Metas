@@ -13,6 +13,7 @@
 @extends('layouts.app')
 
 @section('content')
+<hr class="my-0">
 <div class="container {{ is_null($objective->cover) ? 'py-5' : null }}" style="{{ !is_null($objective->cover) ? 'margin-top: -350px;' : null}}" >
 	<div class="row justify-content-center">
 		<div class="col-md-4">

@@ -114,7 +114,7 @@ export default {
           this.goalsDelayed,
           this.goalsInactive,
         ],
-        labelsColors: ['#2eda54','#ffa51e','#f15454','#7e7e7e']
+        labelsColors: ['#00b7ef', '#f79200', '#d172ae', '#7e7e7e']
       }
     },
     chartStyle: function(){

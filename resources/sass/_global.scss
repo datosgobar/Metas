@@ -78,14 +78,43 @@ h5,h6{
   margin-right: 0.75rem;
 }
 
+// .bg-reached{
+//   background-color: #2eda54;
+// }
+// .bg-ongoing{
+//   background-color: #f79200;
+// }
+// .bg-delayed{
+//   background-color: #f15454;
+// }
+// .bg-inactive{
+//   background-color: #7e7e7e;
+// }
+// .bg-ultralight{
+//   background-color: $gray-100;
+// }
+// .text-reached{
+//   color: #2eda54;
+// }
+// .text-ongoing{
+//   color: #f79200;
+// }
+// .text-delayed{
+//   color: #f15454;
+// }
+// .text-inactive{
+//   color: #7e7e7e;
+// }
+
+// Metas - argentina.gob.ar
 .bg-reached{
-  background-color: #2eda54;
+  background-color: #00b7ef;
 }
 .bg-ongoing{
-  background-color: #ffa51e;
+  background-color: #f79200;
 }
 .bg-delayed{
-  background-color: #f15454;
+  background-color: #d172ae;
 }
 .bg-inactive{
   background-color: #7e7e7e;
@@ -94,13 +123,13 @@ h5,h6{
   background-color: $gray-100;
 }
 .text-reached{
-  color: #2eda54;
+  color: #00b7ef;
 }
 .text-ongoing{
-  color: #ffa51e;
+  color: #f79200;
 }
 .text-delayed{
-  color: #f15454;
+  color: #d172ae;
 }
 .text-inactive{
   color: #7e7e7e;
@@ -215,7 +244,9 @@ h5,h6{
   background-position: center center;
   .app-portal-header-overlay {
     height: 200px;
-    background-color: transparentize($primary, 0.25);
+    // background-color: transparentize($primary, 0.25);
+    background: rgb(138,138,138);
+    background: linear-gradient(180deg, rgba(138,138,138,0.6) 0%, rgba(0,0,0,0.7469188358937324) 100%);
   }
 }@each $breakpoint in map-keys($grid-breakpoints) {
   @each $size, $length in $sizes {
@@ -229,7 +260,7 @@ h5,h6{
 }
 
 #app{
-  background-color: #f5f5f5;
+  background-color: #fff;
   padding-bottom: 75px;
 }
 

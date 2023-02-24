@@ -83,7 +83,7 @@ export default {
           this.objective.goals_status.delayed ?? 0,
           this.objective.goals_status.inactive ?? 0,
         ],
-        labelsColors: ['#2eda54','#ffa51e','#f15454','#7e7e7e']
+        labelsColors: ['#00b7ef','#f79200','#d172ae','#7e7e7e']
       }
     },
     chartStyle: function(){
@@ -101,8 +101,8 @@ export default {
 .objective-card{
   .goal-container{
     .goal-percentage {
-       min-width: 30px;
-       text-align: center;
+       min-width: 40px;
+       text-align: left;
     }
   }
   .report-container{
