@@ -33,7 +33,7 @@ Route::get('/ingresar', [HomeController::class, 'viewIngresar'])->name('ingresar
 Route::get('/start', [MiscController::class, 'start'])->name('start');
 Route::post('/start', [MiscController::class, 'startApp'])->name('start.form');
 // Route::get('/testmail', [MiscController::class, 'testEmail'])->name('misc.testEmail');
-Route::get('/testing', [MiscController::class, 'testing'])->name('testing');
+// Route::get('/testing', [MiscController::class, 'testing'])->name('testing');
 
 Route::group([
     'as' => 'about.', 
