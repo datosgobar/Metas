@@ -37,13 +37,13 @@
         <!-- Authentication Links -->
         @guest
         <li class="nav-item">
-         <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i>&nbsp;{{ __('Login') }}</a>
+         <a class="nav-link" href="{{ route('ingresar') }}"><i class="fas fa-sign-in-alt"></i>&nbsp;{{ __('Login') }}</a>
         </li>
-        @if (Route::has('register'))
+        <!-- @if (Route::has('register'))
         <li class="nav-item">
           <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-user-plus"></i>&nbsp;{{ __('Register') }}</a>
         </li>
-        @endif
+        @endif -->
         @else
         @if( $countUnreadNotifications > 0 )
         <li class="nav-item">

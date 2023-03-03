@@ -15,6 +15,7 @@
     </div>
   @endif
   <div class="row">
+    @if(!Auth::user()->isOidcUser())
     <div class="col col-md-8">
       <form action="{{ route('panel.account.access.form') }}" method="POST">
         @method('PUT')
@@ -34,6 +35,14 @@
         <button class="btn btn-primary">Guardar</button>
        </form>
     </div>
+    @else
+    <div class="col">
+      <p>Estas iniciando sesión utilizando <a href="https://mi.argentina.gob.ar" target="_black" class="text-dark"><b>mi<span class="text-argentina">Argentina</span></b></a>.</p>
+      <p>Si tu intención es cambiar la contraseña de miArgentina, ingresá a portal: <a href="https://mi.argentina.gob.ar" target="_black" class="text-dark"><b>mi<span class="text-argentina">Argentina</span></b></a></p>
+      <p>Preguntas frecuentes: hace <a href="https://www.argentina.gob.ar/miargentina/preguntasfrecuentes" target="_blank">click acá</a></p>
+      </p>
+    </div>
+    @endif
   </div>
 </section>
 
