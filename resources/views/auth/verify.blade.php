@@ -9,7 +9,7 @@
 					alt="{{ config('app.name', 'Laravel') }}">
 			</div>
 			<div class="card shadow-sm">
-				<div class="card-body py-5">
+				<div class="card-body py-4">
 					<h3><i class="far fa-envelope fa-fw text-info"></i></h3>
 			<h3 class="is-600">{{ __('Verify Your Email Address') }}</h3>
 			@if (session('resent'))
