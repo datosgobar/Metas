@@ -55,6 +55,8 @@ There are other changes introduced in this branch
 * Email titles now uses `APP_NAME` env variable.
 * Some styling tweaks for auth views (Login, Register, Forgot password, Reset password, Verify email, etc)
 * Changed "Frecuencia del indicador" to "Fecha de cierre", as requested for the client.
+* Fixed pagination not using bootstrap (Laravel's shenanigans) 
+* Tags wont show if no tags are linked to the objective
 
 
 ### (2023-02-03)
