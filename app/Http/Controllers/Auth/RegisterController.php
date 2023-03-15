@@ -71,7 +71,7 @@ class RegisterController extends Controller
             $user = User::where('email', $data['email'])->first();
 
             if ($user && $user->oidc_id) {
-                $validator->errors()->add('email', 'El email ha sido registrado utilizando "Mi Argentina". Por favor, haga login usando el boton de Mi Argentina.');
+                $validator->errors()->add('miargentina', 'El email ha sido registrado utilizando "Mi Argentina". Por favor, haga login usando el boton de Mi Argentina.');
             }
         });
 
