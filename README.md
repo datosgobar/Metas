@@ -8,6 +8,55 @@ Participes es una plataforma digital para gobiernos e instituciones que permite 
 
 ## Changelog
 
+### (2023-03-15)
+"Mi Argentina" login has been implemented, following the recommended implementation for PHP (https://argob.github.io/mi-argentina-docs/doc/plataformas.html#php)
+
+> **NOTE**: There is a new migration with this version, make sure to run it. You can do this by running `php artisan migrate` in the root directory of the project. In production you should run `php artisan migrate --force` to avoid any errors.
+> 
+> As always, we recommend you to make a backup of your database before running the migrations.
+
+**THIS IS IMPORTANT** There are 3 new ENV variables to set up in the .env file.
+
+```
+OIDC_URL=
+OIDC_CLIENT_ID=
+OIDC_CLIENT_SECRET=
+```
+
+As requested, email register and login keeps available in the system
+
+The way it works is:
+
+```
+User logs in.
+--- If through Mi Argentina, user sign in with Mi Argentina and does the callback to `/auth/miargentina`
+------ Check if there is a user with the oidc_id that comes from MiArgentina
+--------- If TRUE (the user is already registered) 
+------------- Update email, name, surname that comes from the profile data from MiArgentina (this is done with every login)
+------------- Log in the uer
+--------- If FALSE (the user is not found with the oidc_id)
+------------- Check if the email (from miArgentina) is in use
+----------------- IF TRUE (the user is registered with an email account)
+--------------------- Reject the register with MiArgentina
+----------------- IF FALSE (no user is using that email, which means, new account)
+--------------------- Create the new user
+--------------------- Automatically the email is validated (by MiArgentina)
+--------------------- Automatically Log in the user
+```
+
+There are other checks when a user:
+- Registers with email: If the user with the email already exists and its oidc_id is not null, means the user has registered with MiArgentina and the system tells the user to log in with MiArgentina
+- Forgot password: If the user with the email already exists and its oidc_id is not null, means the user has registered with MiArgentina and it cannot "restore" a password (it is forbidden)
+- If a user goes to their panel, and they log in using MiArgentina, they are not allowed to change email nor password. The panel view tells to change it in MiArgentina if the want to.
+- For email users, change email and password panels are available as normal.
+
+There are other changes introduced in this branch
+* Emails styling: Now its more in shape with Argentina's CSS
+* Email titles now uses `APP_NAME` env variable.
+* Some styling tweaks for auth views (Login, Register, Forgot password, Reset password, Verify email, etc)
+* Changed "Frecuencia del indicador" to "Fecha de cierre", as requested for the client.
+
+
 ### (2023-02-03)
 * No new version. Just a small fix in the README.md file.
 * Added DEPLOY.md file with instructions to deploy the project in a LAMP/LEMP server.
