@@ -19,7 +19,7 @@
 			@endif
 			<div class="card shadow-sm">
 				<div class="card-body py-4">
-					<h5 class="text-center mb-4"><b>Ingresá con mi email</b></h5>
+					<h5 class="text-center mb-4"><b>Ingresár con email</b></h5>
 
 
 					<form method="POST" action="{{ route('login') }}">
@@ -72,15 +72,27 @@
 								<button type="submit" class="btn btn-primary">
 									<i class="fas fa-sign-in-alt"></i>&nbsp;{{ __('Login') }}
 								</button>
-
 								@if (Route::has('password.request'))
-								<a class="btn btn-outline-white btn-sm" href="{{ route('password.request') }}">
+								<a class="btn btn-text btn-sm" href="{{ route('password.request') }}">
 									<i class="fas fa-question-circle"></i>&nbsp;{{ __('Forgot Your Password?') }}
 								</a>
 								@endif
 							</div>
 						</div>
 					</form>
+				</div>
+			</div>
+			<br/>
+			<div class="card shadow-sm">
+				<div class="card-body py-4">
+					<div class="row mb-0">
+						<div class="col-md-12 text-center">
+							<p class="text-muted">O creá una cuenta con tú email</p>
+							<a class="btn btn-outline-white text-primary" href="{{ route('register') }}">
+								<i class="fas fa-user-plus fa-fw"></i>&nbsp;{{ __('Registrarse') }}
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 			<br/>

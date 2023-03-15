@@ -37,7 +37,7 @@
 				<div class="card-body text-center">
 					<p class="text-muted">O podes ingresar utilizando otro método</p>
 					<!-- button to route login -->
-						<a href="{{ route('login') }}" class="btn btn-sm"><i class="far fa-envelope"></i>&nbsp;&nbsp;Ingresar con email</a>
+						<a href="{{ route('login') }}" class="btn btn-outline-white"><i class="far fa-envelope"></i>&nbsp;&nbsp;Ingresar con email</a>
 				</div>
 			</div>
 

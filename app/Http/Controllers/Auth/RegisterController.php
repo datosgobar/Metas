@@ -50,15 +50,34 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+    //     return Validator::make($data, [
+    //         'name' => ['required', 'string', 'max:255'],
+    //         'surname' => ['required', 'string', 'max:255'],
+    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+    //         'password' => ['required', 'string', 'min:8', 'confirmed'],
+    //         'organization' => ['nullable', 'string', 'max:550'],
+    //         'g-recaptcha-response' => 'required|captcha'
+    //     ]);
+        $validator = Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'organization' => ['nullable', 'string', 'max:550'],
-            'g-recaptcha-response' => 'required|captcha'
+            'g-recaptcha-response' => ['required', 'captcha']
         ]);
+
+        $validator->after(function ($validator) use ($data) {
+            $user = User::where('email', $data['email'])->first();
+
+            if ($user && $user->oidc_id) {
+                $validator->errors()->add('email', 'El email ha sido registrado utilizando "Mi Argentina". Por favor, haga login usando el boton de Mi Argentina.');
+            }
+        });
+
+        return $validator;
     }
+    
 
     /**
      * Create a new user instance after a valid registration.
@@ -68,6 +87,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         $user = User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
