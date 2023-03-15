@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'email', 'password','organization'
+        'oidc_id', 'name', 'surname', 'email', 'password','organization'
     ];
 
     /**
@@ -26,7 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'email','password', 'remember_token', 'trace'
+        'oidc_id', 'email','password', 'remember_token', 'trace'
     ];
 
     /**
@@ -114,5 +114,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isReporterObjective($objectiveId)
     {
         return $this->objectives()->where('objectives.id', $objectiveId)->wherePivot('role','reporter')->exists();
+    }
+
+    public function isOidcUser()
+    {
+        return !is_null($this->oidc_id);
     }
 }

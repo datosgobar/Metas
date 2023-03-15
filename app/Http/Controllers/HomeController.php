@@ -45,6 +45,11 @@ class HomeController extends Controller
             'categories' => $categories,
         ]);
     }
+
+    public function viewIngresar()
+    {
+        return view('portal.ingresar');
+    }
     
     public function viewAboutGeneral()
     {

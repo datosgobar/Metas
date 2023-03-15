@@ -21,8 +21,9 @@
 				</ul>
 			</div>
 			@endif
-			<div class="card shadow-sm py-4">
-				<div class="card-body">
+			<div class="card shadow-sm">
+				<div class="card-body py-4">
+					<h5 class="text-center mb-4"><b>Registrarse con email</b></h5>
 					<form method="POST" action="{{ route('register') }}">
 						@csrf
 
@@ -128,6 +129,16 @@
 							</div>
 						</div>
 					</form>
+				</div>
+			</div>
+			<br/>
+			<div class="card shadow-sm">
+				<div class="card-body text-center">
+					<p class="text-muted">O podes ingresar utilizando otro método</p>
+					<!-- button to route login -->
+						<a href="{{ route('auth.miargentina') }}" class="btn btn-sm">
+							<img src="{{asset('img/logo-miArgentina.png')}}" class="img-fluid" width="120" alt="Mi Argentina">
+						</a>
 				</div>
 			</div>
 		</div>

@@ -17,9 +17,9 @@
                 </ul>
             </div>
             @endif
-            <div class="card shadow-sm py-4">
+            <div class="card shadow-sm">
 
-            <div class="card-body">
+            <div class="card-body py-4">
                 {{ __('Please confirm your password before continuing.') }}
 
                 <form method="POST" action="{{ route('password.confirm') }}">
