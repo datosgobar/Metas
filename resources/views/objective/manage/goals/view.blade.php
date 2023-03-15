@@ -55,7 +55,7 @@
       <p>{{$goal->indicator_unit}}</p> 
     </div>
     <div class="col md-6">
-      <h5 class="font-weight-bold">Frecuencia</h6>
+      <h5 class="font-weight-bold">Fecha de cierre</h6>
       <p>{{$goal->indicator_frequency ?: '- Sin Datos -'}}</p>
     </div>
   </div>

@@ -17,7 +17,7 @@
 | **Estado** | {{$goal->status_label }} |
 | **Valor a alcanzar** | {{$goal->indicator_goal }} |
 | **Unidad del indicador** | {{$goal->indicator_unit }} |
-| **Frecuencia** | {{$goal->indicator_frequency }} |
+| **Fecha de cierre ** | {{$goal->indicator_frequency }} |
 @endcomponent
 
 La nueva meta 🎯 **{{$goal->title}}** y podes entrar a ver todo acerca de ella en la web de "{{ config('app.name') }}" haciendo clic en el botón 👇
