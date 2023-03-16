@@ -68,13 +68,19 @@ class MiscController extends Controller
 	public function testEmail(Request $request){
 
 		$objective = Objective::find(1);
-		$event = Event::find(1);
+		$goal = $objective->goals->first();
+		$report = $goal->reports->first();
+		// $event = Event::find(1);
 		$user = User::find(5);
 
+		$notification = new App\Notifications\NewReport($objective, $goal, $report);
+		return $notification->toMail($user);
+
+		
     // return (new App\Notifications\EditObjective($objective))
     //             ->toMail($user);
-    return (new App\Notifications\DeleteEvent($event))
-                ->toMail($user);
+    // return (new App\Notifications\DeleteEvent($event))
+    //             ->toMail($user);
 	}
 
 	public function testing(Request $request){

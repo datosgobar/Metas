@@ -17,10 +17,12 @@
 				</ul>
 			</div>
 			@endif
-			<div class="card shadow-sm py-4">
-				{{-- <div class="card-header">{{ __('Reset Password') }}</div> --}}
+			<div class="card shadow-sm">
+			<div class="card-body py-4">
+				<h5 class="text-center"><b>Restablecer mi contraseña</b></h5>
+				<p class="text-center text-muted mb-1">Solo para cuentas que inician sesión con email</p>
+				<p class="text-center text-muted mb-4">Ingrese sú email y su nueva contraseña</p>
 
-			<div class="card-body">
 				<form method="POST" action="{{ route('password.update') }}">
 					@csrf
 

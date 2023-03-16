@@ -13,6 +13,7 @@ use App\Http\Controllers\GoalController;
 use App\Http\Controllers\GoalPanelController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReportPanelController;
+use App\Http\Controllers\OIDCController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -28,10 +29,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/ingresar', [HomeController::class, 'viewIngresar'])->name('ingresar');
 Route::get('/start', [MiscController::class, 'start'])->name('start');
 Route::post('/start', [MiscController::class, 'startApp'])->name('start.form');
 // Route::get('/testmail', [MiscController::class, 'testEmail'])->name('misc.testEmail');
-Route::get('/testing', [MiscController::class, 'testing'])->name('testing');
+// Route::get('/testing', [MiscController::class, 'testing'])->name('testing');
 
 Route::group([
     'as' => 'about.', 
@@ -50,6 +52,14 @@ Route::group([
     Route::get('/faq', [HomeController::class, 'viewAboutQuestionsTwo'])->name('faq');
     Route::get('/legales', [HomeController::class, 'viewAboutLegalsTwo'])->name('legal');
 });
+
+Route::group([
+    'as' => 'auth.',
+    'prefix' => 'auth',
+    ],function () {
+        Route::get('/miargentina', [OIDCController::class, 'loginMiArgentina'])->name('miargentina');
+    }
+);
 
 Route::group([
     'as' => 'events.', 

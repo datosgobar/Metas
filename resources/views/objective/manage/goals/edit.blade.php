@@ -61,7 +61,7 @@
         <div class="form-group">
           <label>Frecuencia de monitoreo <small class="text-info">Opcional</small></label>
           <input type="text" class="form-control" name="indicator_frequency" placeholder="Ej: Semanal, mensual, semestral, anual, etc" value="{{$goal->indicator_frequency}}">
-          <small class="form-text text-muted">Espacio temporal en el que vamos a medir nuestro indicador : Semanal, mensual, semestral, anual, etc.</small>
+          <small class="form-text text-muted">Fecha de cierre, o sea, fecha limite para entrega de los reportes.</small>
         </div>
       </div>
     </div>

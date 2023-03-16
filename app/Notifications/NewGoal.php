@@ -68,9 +68,9 @@ class NewGoal extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {   
-        
+        $appName = config('app.name');
         return (new MailMessage)
-                    ->subject('¡Nueva meta en Participes!')
+                    ->subject('¡Nueva meta en '.$appName.'!')
                     ->markdown('mail.goals.new', ['user' => $notifiable, 'objective' => $this->objective, 'goal' => $this->goal]);
     }
 

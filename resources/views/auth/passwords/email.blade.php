@@ -21,10 +21,11 @@
 				</ul>
 			</div>
 			@endif
-			<div class="card shadow-sm py-4">
-				{{-- <div class="card-header">{{ __('Reset Password') }}</div> --}}
-
-				<div class="card-body">
+			<div class="card shadow-sm">
+				
+				<div class="card-body py-4">
+					<h5 class="text-center"><b>Solicitar recuperar mi contraseña</b></h5>
+					<p class="text-center text-muted mb-4">Solo para cuentas que inician sesión con email</p>
 					@if (session('status'))
 					<div class="alert alert-success" role="alert">
 						{{ session('status') }}

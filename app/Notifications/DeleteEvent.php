@@ -65,9 +65,9 @@ class DeleteEvent extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {   
-        
+        $appName = config('app.name');
         return (new MailMessage)
-                    ->subject('Han eliminado un evento que sigues en Participes')
+                    ->subject('Han eliminado un evento que sigues en '.$appName)
                     ->markdown('mail.events.delete', ['user' => $notifiable, 'event' => $this->event]);
     }
 

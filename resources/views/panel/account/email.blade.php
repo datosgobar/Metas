@@ -16,6 +16,7 @@
     </div>
   @endif
   <div class="row">
+    @if(!Auth::user()->isOidcUser())
     <div class="col col-md-8">
       <form action="{{ route('panel.account.email.form') }}" method="POST">
         @method('PUT')
@@ -38,6 +39,16 @@
         <button class="btn btn-primary">Guardar</button>
        </form>
     </div>
+    @else
+    <div class="col">
+      <p>Estas iniciando sesión utilizando miArgentina, por lo que para hacerlo, tenes que hacerlo desde el sitio de miArgentina.</p>
+      <p>Una vez que hayas cambiado tu email en miArgentina, el cambio se verá reflejado la proxima vez que inicies sesión.</p>
+      <p>Tu email actual es: <b>{{ Auth::user()->email }}</b></p>
+      <p>Para hacerlo, ingresá a <a href="https://mi.argentina.gob.ar" target="_black" class="text-dark"><b>mi<span class="text-argentina">Argentina</span></b></a></p>
+      <p>Preguntas frecuentes: hace <a href="https://www.argentina.gob.ar/miargentina/preguntasfrecuentes" target="_blank">click acá</a></p>
+      </p>
+    </div>
+    @endif
   </div>
 </section>
 

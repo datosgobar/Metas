@@ -12,7 +12,7 @@
 
 Han editado el evento **{{$event->title}}** en Partícipes 🗓️ y como estas suscripto a un objetivo relacionado con el evento, nos parecio oportuno avisarte. 😮
 
-El evento se llevará a cabo el @justdate($event->date) a las @justtime($event->date). Te invitamos a que veas el evento editado en la web de Participes 👇
+El evento se llevará a cabo el @justdate($event->date) a las @justtime($event->date). Te invitamos a que veas el evento editado en la web de "{{ config('app.name') }}" 👇
 
 @component('mail::button', ['url' => route('events.index', ['eventId' => $event->id])])
 🔍 Ver mas información

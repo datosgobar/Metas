@@ -71,8 +71,9 @@ class NewReport extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {   
+        $appName = config('app.name');
         return (new MailMessage)
-                ->subject("¡Nuevo reporte de {$this->report->type_label} en Participes!")
+                ->subject("¡Nuevo reporte de {$this->report->type_label} en " . $appName . "!")
                 ->markdown('mail.reports.new', ['user' => $notifiable, 'objective' => $this->objective, 'goal' => $this->goal, 'report' => $this->report]);
 
     }
