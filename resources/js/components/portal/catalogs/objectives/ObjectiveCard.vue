@@ -13,13 +13,13 @@
           <p class="m-0 text-muted text-smaller">Publicado {{objective.published_at}}</p>
           </div>
         <div class="mx-1 d-flex flex-column flex-md-row">
-          <div class="text-center m-2">
+          <div class="text-center m-2" style="width: 60px">
             <span class="is-700 is-size-5"><i class="fas fa-medal fa-fw text-primary"></i>{{objective.goals_count}}</span><br><span class="text-smaller">metas</span>
           </div>
-          <div class="m-2">
+          <div class="m-2" style="width: 60px; display: flex; justify-content: center; align-items: center;">
           <goals-doughnut :chartData="chartData" :styles="chartStyle"></goals-doughnut>
           </div>
-          <div class="text-center m-2">
+          <div class="text-center m-2" style="width: 60px">
             <span class="is-700 is-size-5"><i class="far fa-file fa-fw text-primary"></i>{{objective.reports_count}}</span><br><span class="text-smaller">reportes</span>
           </div>
         </div>

@@ -58,7 +58,7 @@
 									<div class="progress my-0 mx-1" style="height: 10px; width: 150px">
 										<div class="progress-bar bg-{{$goal->status}}" role="progressbar" style="width: {{$goal->progress_percentage}}%" aria-valuenow="{{$goal->progress_percentage}}" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
-									<span class="goal-percentage text-smallest is-700 ml-1">{{$goal->progress_percentage}}%</span>
+									<span class="goal-percentage text-smallest is-700 ml-1" style="width: 40px">{{$goal->progress_percentage}}%</span>
 								</div>
 							</div>
 							@empty
