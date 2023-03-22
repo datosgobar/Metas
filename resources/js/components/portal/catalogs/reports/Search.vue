@@ -73,11 +73,11 @@ export default {
           title: 'Avance',
           icon: 'fas fa-fast-forward'
         },
-        {
-          id: 'milestone',
-          title: 'Hito',
-          icon: 'fas fa-medal'
-        },
+        // {
+        //   id: 'milestone',
+        //   title: 'Hito',
+        //   icon: 'fas fa-medal'
+        // },
       ],
       statuses: [
         {
