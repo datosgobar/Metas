@@ -8,7 +8,7 @@
 			<li class="nav-item">
 				<a class="nav-link text-primary is-clickable" @click="type = 'progress'" :class="type == 'progress' && 'active font-weight-bold'"><i class="fas fa-fast-forward"></i>&nbsp;&nbsp;Avance</a>
 			</li>
-			<li class="nav-item" v-if="milestones.length > 0">
+			<li class="nav-item" v-if="milestones && milestones.length > 0">
 				<a class="nav-link text-primary is-clickable" @click="type = 'milestone'" :class="type == 'milestone' && 'active font-weight-bold'"><i class="fas fa-medal"></i>&nbsp;&nbsp;Hito</a>
 			</li>
 		</ul>
