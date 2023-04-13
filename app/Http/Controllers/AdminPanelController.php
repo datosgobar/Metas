@@ -152,7 +152,7 @@ class AdminPanelController extends Controller
     public function formCreateOrganization(Request $request){
         $rules = [
             'name' => 'required|string|max:225',
-            'description' => 'required|string|max:550',
+            'description' => 'nullable|string|max:550',
             'logo' => 'image|nullable|max:1999'
         ];
         $request->validate($rules);
@@ -208,7 +208,7 @@ class AdminPanelController extends Controller
     public function formEditOrganization(Request $request, $organizationId){
         $rules = [
             'name' => 'required|string|max:225',
-            'description' => 'required|string|max:550',
+            'description' => 'string|nullable|max:550',
             'logo' => 'image|nullable|max:1999'
         ];
         $request->validate($rules);
@@ -335,11 +335,6 @@ class AdminPanelController extends Controller
     }
 
     public function formDeleteFaq(Request $request, $faqId){
-        $rules = [
-            'password' =>  ['required', new MatchOldPassword],
-        ];
-
-        $request->validate($rules);
 
         $faq = Faq::findOrFail($faqId);
         $faq->delete();
