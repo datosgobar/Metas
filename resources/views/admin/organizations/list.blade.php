@@ -17,7 +17,11 @@
         </div>
         <div class="w-100">
           <h4 class="is-700">{{ $organization->name }}</h4>
-          <span class="text-smaller text-muted">{{ $organization->description }}</span>
+          @if($organization->description)
+          <span class="text-smaller text-muted">{{ $organization->description}}</span>
+          @else
+          <span class="text-smaller text-muted"><i>(Sin descripción)</i></span>
+          @endif
           <div class="text-right">
           </div>
         </div>
