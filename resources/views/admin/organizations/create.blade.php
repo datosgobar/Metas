@@ -22,7 +22,7 @@
       <small class="text-muted">Hasta 225 caracteres.</small>
     </div>
     <div class="form-group">
-      <label><b>Descripción</b> <small class="text-danger">*</small></label>
+      <label><b>Descripción</b> <small class="text-info">Opcional</small></label>
       <textarea name="description" class="form-control" rows="4" maxlength="550"></textarea>
       <small class="text-muted">Hasta 550 caracteres.</small>
     </div>

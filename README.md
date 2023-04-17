@@ -8,6 +8,24 @@ Participes es una plataforma digital para gobiernos e instituciones que permite 
 
 ## Changelog
 
+### (2023-04-13)
+
+> **NOTE**: There is a new package in this version, make sure to run `composer install` in the root directory of the project. In production you should run `composer install --no-dev` to avoid any errors.
+
+> **NOTE**: There is a new migration with this version, make sure to run it. You can do this by running `php artisan migrate` in the root directory of the project. In production you should run `php artisan migrate --force` to avoid any errors.
+> 
+> As always, we recommend you to make a backup of your database before running the migrations.
+
+* Fixed deleting a frequent question in the admin panel
+* Removed "Hitos" admin in the goal admin panel
+* Removed "Hitos" from "Nueva meta del objetivo" form
+* Removed "No milestones" notification from the dashboard of the goal view.
+* Removed tab "Reporte de Hito" in the Report form component.
+* Added doctrine/dbal to the composer.json file for the migrations to work.
+* Added the migration to change the "description" column in the "Organizaciones" table to allow null values.
+* Changed create/edit organization form to allow null values in the "description" field.
+
+
 ### (2023-03-15)
 "Mi Argentina" login has been implemented, following the recommended implementation for PHP (https://argob.github.io/mi-argentina-docs/doc/plataformas.html#php)
 
