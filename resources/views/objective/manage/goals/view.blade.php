@@ -15,14 +15,14 @@
   </div>
   <div class="card border-light my-3">
     <div class="card-body py-4 row justify-content-between">
-      <div class="col-6 text-center">
+      <div class="col-12 text-center">
         <h6 class="font-weight-bold">Reportes</h6>
         <span class="h6"><i class="far fa-file-alt fa-fw"></i> {{$goal->reports()->count()}}</span>
       </div>
-      <div class="col-6 text-center">
+      <!-- <div class="col-6 text-center">
         <h6 class="font-weight-bold">Hitos</h6>
         <span class="h6"><i class="far fa-star fa-fw"></i> {{$goal->milestones()->count()}}</span>
-      </div>
+      </div> -->
     </div>
  </div>
     <h5 class="font-weight-bold">Progreso de la meta</h6>
@@ -65,14 +65,14 @@
   @else
     <p class="text-muted">Sin información cargada</p>
   @endif
-  @if($goal->milestones->isEmpty())
+  <!-- @if($goal->milestones->isEmpty())
   <div class="card border-secondary my-2">
     <div class="card-body">
       <h6><b><i class="fas fa-info-circle"></i>&nbsp;La meta no cuenta con hitos</b></h6>
       <span class="text-muted">Puede crearlos haciendo <a href="{{ route('objectives.manage.goals.milestones.add', ['objectiveId' => $objective->id,'goalId' => $goal->id]) }}">click aquí <i class="fas fa-arrow-right"></i></a></span>
     </div>
   </div>
-  @endif
+  @endif -->
   @if($goal->reports->isEmpty())
   <div class="card border-secondary my-2">
     <div class="card-body">
