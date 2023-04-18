@@ -53,7 +53,7 @@
       </div>
       <div class="col">
         <div class="form-group">
-          <label><b>Frecuencia de monitoreo</b><small class="text-info">Opcional</small></label>
+          <label><b>Frecuencia de monitoreo</b> <small class="text-info">Opcional</small></label>
           <input type="text" class="form-control" name="indicator_frequency" placeholder="Ej: Semanal, mensual, semestral, anual, etc">
           <small class="form-text text-muted">Fecha de cierre, o sea, fecha limite para entrega de los reportes.</small>
         </div>
@@ -74,10 +74,10 @@
       <input type="text" class="form-control" name="source" placeholder="Escriba aquí">
       <small class="form-text text-muted">Es importante que la fuente de datos sean accesibles y oficiales para hacer transparente la medición</small>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label><b>Hitos</b> <small class="text-info">Opcional</small></label>
       <input-add-milestones-create-goal name="milestones">
-    </div>
+    </div> -->
     <div class="border border-light rounded p-3">
       <label class="is-700 "><i class="fas fa-paper-plane"></i>&nbsp;Enviar notificacion a suscriptores</label>
       @if(!$objective->hidden)

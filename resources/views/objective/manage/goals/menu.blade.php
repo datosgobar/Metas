@@ -24,13 +24,14 @@ $currentRoute = Route::currentRouteName();
 <a href="{{ route('objectives.manage.goals.reports.add', ['objectiveId' => $objective->id, 'goalId' => $goal->id ]) }}" class="item-link {{ $currentRoute == 'objectives.manage.goals.reports.add'  ? 'is-active' : null }}"><i class="fas fa-plus fa-fw"></i>&nbsp;Nuevo</a>
 <a href="{{ route('objectives.manage.goals.reports', ['objectiveId' => $objective->id, 'goalId' => $goal->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.goals.reports'  ? 'is-active' : null }}">Listar</a>
 </div>
-<h6 class="category"><i class="fas fa-star fa-fw"></i>&nbsp;Hitos</h6>
+
+<!-- <h6 class="category"><i class="fas fa-star fa-fw"></i>&nbsp;Hitos</h6>
 <div class="menu-link">
 @isManager($objective->id)
 <a href="{{ route('objectives.manage.goals.milestones.add', ['objectiveId' => $objective->id, 'goalId' => $goal->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.goals.milestones.add'  ? 'is-active' : null }}"><i class="fas fa-plus fa-fw"></i>&nbsp;Crear</a>
 @endisManager
 <a href="{{ route('objectives.manage.goals.milestones', ['objectiveId' => $objective->id, 'goalId' => $goal->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.goals.milestones'  ? 'is-active' : null }}">Listar</a>
-</div>
+</div> -->
 @isManager($objective->id)
 <h6 class="category"><i class="fas fa-cog fa-fw"></i>&nbsp;Administrar</h6>
 <div class="menu-link">
