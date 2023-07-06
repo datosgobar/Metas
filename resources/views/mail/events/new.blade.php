@@ -10,7 +10,7 @@
 @component('mail::message')
 # ¡Hola {{$user->name}}! 👋
 
-Hay un nuevo evento en Partícipes 🗓️ y esta relacionado a un objetivo al que estas suscripto. ¡Creemos que te puede interesar participar! 🥳
+Hay un nuevo evento en Metas 🗓️ y esta relacionado a un objetivo al que estas suscripto. ¡Creemos que te puede interesar participar! 🥳
 
 El evento se llama **{{$event->title}}** y es el @justdate($event->date) a las @justtime($event->date). Te dejamos una breve descripción 👇
 
