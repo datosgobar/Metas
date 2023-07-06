@@ -5,7 +5,7 @@ $avatarPath = isset($comment->user->avatar) ? ( $useThumbnail ? asset($comment->
 @component('mail::message')
 # ¡Hola {{$user->name}}! 👋
 
-Han hecho un nuevo comentario 💬 en tu reporte **{{$report->title}}** en Partícipes 
+Han hecho un nuevo comentario 💬 en tu reporte **{{$report->title}}** en Metas 
 
 @component('mail::panel')
 <img src="{{$avatarPath}}" style="height: 32px; margin-right: 10px; border-radius:32px; vertical-align:bottom;"/>  **{{$comment->user->fullname}}**  
