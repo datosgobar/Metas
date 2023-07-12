@@ -25,6 +25,7 @@ use App\Notifications\EditReport;
 use App\Notifications\DeleteReport;
 use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
+use stdClass;
 
 class ReportPanelController extends Controller
 {
@@ -209,7 +210,28 @@ class ReportPanelController extends Controller
         $imageFile->thumbnail_mime = $mimeType;
         $imageFile->thumbnail_path = $photoPathThumbnail;
         $request->report->photos()->save($imageFile);
+      } else {
+        return redirect()->route('objectives.manage.goals.reports.album', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('error','No se pudo agregar la foto al album del reporte');
       }
+
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha agregado una imagen \"{$picture->name}\" al album del reporte [{$request->report->title}] de la meta [{$request->goal->title}] del objetivo [{$request->objective->title}]", [
+        'objective_id' => $request->objective->id,
+        'objective_title' => $request->objective->title,
+        'goal_title' => $request->goal->id,
+        'goal_title' => $request->goal->title,
+        'report_id' => $request->report->id,
+        'report_title' => $request->report->title,
+        'image_id' => $imageFile->id,
+        'image_path' => $imageFile->path,
+        'image_name' => $imageFile->name,
+        'image_mime' => $imageFile->mime,
+        'image_thumbnail_name' => $imageFile->thumbnail_path,
+        'image_thumbnail_path' => $imageFile->thumbnail_name,
+        'user_id' => $request->user()->id,
+        'user_fullname' => $request->user()->fullname,
+        'user_email' => $request->user()->email
+      ]);
+      
 
       return redirect()->route('objectives.manage.goals.reports.album', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('success','Se agrego la foto al album del reporte');
     }
@@ -218,16 +240,48 @@ class ReportPanelController extends Controller
     {
         $report = Report::findorfail($reportId);
         $picture = ImageFile::findorfail($pictureId);
+        $existsPhoto = Storage::disk('reports')->exists("photos/".$picture->name);
+        $existsThumbnail = Storage::disk('reports')->exists("photos/".$picture->thumbnail_name); 
+        if(!$existsPhoto || !$existsThumbnail){
+          return redirect()->route('objectives.manage.goals.reports.album', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('error','La foto no existe');
+        }
         Storage::disk('reports')->delete("photos/".$picture->name);
         Storage::disk('reports')->delete("photos/".$picture->thumbnail_name);
+        $auxFile = new \stdClass();
+        $auxFile->id = $picture->id;
+        $auxFile->path = $picture->path;
+        $auxFile->name = $picture->name;
+        $auxFile->mime = $picture->mime;
+        $auxFile->thumbnail_path = $picture->thumbnail_path;
+        $auxFile->thumbnail_name = $picture->thumbnail_name;
         $picture->delete();
+
+        Log::channel('mysql')->info("[{$request->user()->fullname}] ha eliminado la imagen \"{$picture->name}\" del album del reporte [{$request->report->title}] de la meta [{$request->goal->title}] del objetivo [{$request->objective->title}]", [
+          'objective_id' => $request->objective->id,
+          'objective_title' => $request->objective->title,
+          'goal_title' => $request->goal->id,
+          'goal_title' => $request->goal->title,
+          'report_id' => $request->report->id,
+          'report_title' => $request->report->title,
+          'image_id' => $auxFile->id,
+          'image_path' => $auxFile->path,
+          'image_name' => $auxFile->name,
+          'image_mime' => $auxFile->mime,
+          'image_thumbnail_name' => $auxFile->thumbnail_path,
+          'image_thumbnail_path' => $auxFile->thumbnail_name,
+          'user_id' => $request->user()->id,
+          'user_fullname' => $request->user()->fullname,
+          'user_email' => $request->user()->email
+        ]);
+
         return redirect()->route('objectives.manage.goals.reports.album', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('success','Se elimino la foto del album del reporte');
     }
 
     public function viewReportFiles (Request $request){
       $files = $request->report->files()->paginate(10);
       return view('objective.manage.goals.reports.files', ['objective' => $request->objective, 'goal' => $request->goal, 'report' => $request->report, 'files' => $files]);
-    } 
+    }
+
     public function formReportFile (Request $request){
       $rules = [
         'file' => 'required|file|max:102400'
@@ -257,8 +311,62 @@ class ReportPanelController extends Controller
         }
       }
 
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha subido un nuevo archivo \"{$fileName}\" al repositorio del reporte [{$request->report->title}] de la meta [{$request->goal->title}] del objetivo [{$request->objective->title}]", [
+        'objective_id' => $request->objective->id,
+        'objective_title' => $request->objective->title,
+        'goal_title' => $request->goal->id,
+        'goal_title' => $request->goal->title,
+        'report_id' => $request->report->id,
+        'report_title' => $request->report->title,
+        'file_id' => (isset($existingFile)) ? $existingFile->id : $saveFile->id,
+        'file_path' => (isset($existingFile)) ? $existingFile->path : $saveFile->path,
+        'file_name' => (isset($existingFile)) ? $existingFile->name : $saveFile->name,
+        'file_mime' => (isset($existingFile)) ? $existingFile->mime : $saveFile->mime,
+        'user_id' => $request->user()->id,
+        'user_fullname' => $request->user()->fullname,
+        'user_email' => $request->user()->email
+        ]);
+
       return redirect()->route('objectives.manage.goals.reports.files', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('success','Se agrego el archivo al repositorio del objetivo');
     } 
+
+    public function formDeleteReportFile (Request $request, $objectiveId, $goalId, $reportId, $fileId){
+      
+      $report = Report::findorfail($reportId);
+      $file = File::findorfail($fileId);
+      $fileName = 'report-'.$request->report->id.'-'.$file->name;
+      $exists = Storage::disk('reports')->exists('files/'.$fileName);
+      if(!$exists){
+        return redirect()->route('objectives.manage.goals.reports.files', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('error','El archivo no existe');
+      }
+      
+      Storage::disk('reports')->delete('files/'.$fileName);
+      $auxFile = new \stdClass();
+      $auxFile->id = $file->id;
+      $auxFile->name = $file->name;
+      $auxFile->path = $file->path;
+      $auxFile->mime = $file->mime;
+      $file->delete();
+      
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha eliminado el archivo \"{$file->name}\" del repositorio del reporte [{$request->report->title}] de la meta [{$request->goal->title}] del objetivo [{$request->objective->title}]", [
+        'objective_id' => $request->objective->id,
+        'objective_title' => $request->objective->title,
+        'goal_title' => $request->goal->id,
+        'goal_title' => $request->goal->title,
+        'report_id' => $request->report->id,
+        'report_title' => $request->report->title,
+        'file_id' => $auxFile->id,
+        'file_path' => $auxFile->path,
+        'file_name' => $auxFile->name,
+        'file_mime' => $auxFile->mime,
+        'user_id' => $request->user()->id,
+        'user_fullname' => $request->user()->fullname,
+        'user_email' => $request->user()->email
+      ]);
+      
+      
+      return redirect()->route('objectives.manage.goals.reports.files', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('success','Se elimino el archivo del repositorio del objetivo');
+    }
 
     public function viewReportMap (Request $request){
       return view('objective.manage.goals.reports.map', ['objective' => $request->objective, 'goal' => $request->goal, 'report' => $request->report]);
@@ -281,6 +389,18 @@ class ReportPanelController extends Controller
       $report->map_geometries = $request->input('map_geometries');
       $report->map_center = $request->input('map_center');
       $report->save();
+
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha actualizado el mapa del reporte [{$request->report->title}] de la meta [{$request->goal->title}] del objetivo [{$request->objective->title}]", [
+        'objective_id' => $request->objective->id,
+        'objective_title' => $request->objective->title,
+        'goal_title' => $request->goal->id,
+        'goal_title' => $request->goal->title,
+        'report_id' => $request->report->id,
+        'report_title' => $request->report->title,
+        'user_id' => $request->user()->id,
+        'user_fullname' => $request->user()->fullname,
+        'user_email' => $request->user()->email
+      ]);
 
       return redirect()->route('objectives.manage.goals.reports.map', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('success','Geometria actualizada!');
     } 
