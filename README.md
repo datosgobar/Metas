@@ -8,6 +8,39 @@ Participes es una plataforma digital para gobiernos e instituciones que permite 
 
 ## Changelog
 
+### (2023-07-11)
+
+> No migration in this version. 
+
+* In the views of the administration panels for objectives, goals, and reports, both for a coordinator and a reporter, there is now a message displayed at the top of the view indicating the role associated with the objective (as a reminder to the user of what they can do).
+* The "Settings" access in the report administration panel menu has been hidden, where the reporter had the option to delete a report (although this action was never allowed as the server returned a message stating that it was not permitted).
+* The description of what happens when a report is deleted has been corrected in the "Settings" option of the report administration panel menu.
+* Added the ability for a coordinator or reporter to delete files uploaded to a report's repository.
+* Added the ability for a coordinator to delete files uploaded to an objective's repository.
+* New notifications in the logbook of an objective:
+- When a coordinator or reporter uploads a new image to a report's album.
+- When a coordinator or reporter uploads a new file to a report's repository.
+- When a coordinator or reporter deletes an image from a report's album.
+- When a coordinator or reporter deletes a file from a report's repository.
+- When a coordinator uploads a file to the objective's repository.
+- When a coordinator deletes a file from the objective's repository.
+- When a coordinator changes the cover image of an objective.
+
+> After pulling the new code in the make sure to run the followings: (As described in DEPLOY.md)
+
+```bash
+php artisan clear-compiled
+php artisan view:clear
+php artisan config:clear
+php artisan optimize
+composer dump-autoload -o
+php artisan queue:restart
+```
+
+### (2023-07-05)
+
+* Fixed some harcoded texts that said "Participes" in email templates.
+
 ### (2023-04-13)
 
 > **NOTE**: There is a new package in this version, make sure to run `composer install` in the root directory of the project. In production you should run `composer install --no-dev` to avoid any errors.
