@@ -333,6 +333,15 @@ class ObjectivePanelController extends Controller
         $request->objective->map_zoom = $request->input('map_zoom');
       }
       $request->objective->save();
+
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha cambiado la configuración del mapa de reportes del objetivo [{$request->objective->title}]", [
+        'objective_id' => $request->objective->id,
+        'objective_title' => $request->objective->title,
+        'user_id' => $request->user()->id,
+        'user_fullname' => $request->user()->fullname,
+        'user_email' => $request->user()->email
+        ]);
+
       return redirect()->route('objectives.manage.configuration', ['objectiveId' => $request->objective->id])->with('success','Se actualizó el objetivo');
     }
 
@@ -401,6 +410,15 @@ class ObjectivePanelController extends Controller
           $request->objective->cover->save();
       }
       // Save Logo
+
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha cambiado la imagen de portada del objetivo [{$request->objective->title}]", [
+        'objective_id' => $request->objective->id,
+        'objective_title' => $request->objective->title,
+        'user_id' => $request->user()->id,
+        'user_fullname' => $request->user()->fullname,
+        'user_email' => $request->user()->email
+        ]);
+
       return redirect()->route('objectives.manage.cover', ['objectiveId' => $request->objective->id])->with('success','Se actualizó la imagen de portada del objetivo');
     } 
 
@@ -439,8 +457,55 @@ class ObjectivePanelController extends Controller
           $request->objective->files()->save($saveFile);
         }
       }
+
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha subido un nuevo archivo \"{$fileName}\" al repositorio del objetivo [{$request->objective->title}]", [
+        'objective_id' => $request->objective->id,
+        'objective_title' => $request->objective->title,
+        'file_id' => (isset($existingFile)) ? $existingFile->id : $saveFile->id,
+        'file_path' => (isset($existingFile)) ? $existingFile->path : $saveFile->path,
+        'file_name' => (isset($existingFile)) ? $existingFile->name : $saveFile->name,
+        'file_mime' => (isset($existingFile)) ? $existingFile->mime : $saveFile->mime,
+        'user_id' => $request->user()->id,
+        'user_fullname' => $request->user()->fullname,
+        'user_email' => $request->user()->email
+        ]);
+
       return redirect()->route('objectives.manage.files', ['objectiveId' => $request->objective->id])->with('success','Se agrego el archivo al repositorio del objetivo');
     } 
+
+    public function formDeleteObjectiveFile (Request $request, $objectiveId, $fileId){
+      $this->hasManagerPrivileges($request);
+      
+      $file = File::findorfail($fileId);
+      $fileName = 'objective-'.$request->objective->id.'-'.$file->name;
+      $exists = Storage::disk('objectives')->exists('files/'.$fileName);
+      if(!$exists){
+        return redirect()->route('objectives.manage.files', ['objectiveId' => $request->objective->id])->with('error','El archivo no existe');
+      }
+      
+      Storage::disk('reports')->delete('files/'.$fileName);
+      $auxFile = new \stdClass();
+      $auxFile->id = $file->id;
+      $auxFile->name = $file->name;
+      $auxFile->path = $file->path;
+      $auxFile->mime = $file->mime;
+      $file->delete();
+      
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha eliminado el archivo \"{$file->name}\" del repositorio del objetivo [{$request->objective->title}]", [
+        'objective_id' => $request->objective->id,
+        'objective_title' => $request->objective->title,
+        'file_id' => $auxFile->id,
+        'file_path' => $auxFile->path,
+        'file_name' => $auxFile->name,
+        'file_mime' => $auxFile->mime,
+        'user_id' => $request->user()->id,
+        'user_fullname' => $request->user()->fullname,
+        'user_email' => $request->user()->email
+      ]);
+      
+      
+      return redirect()->route('objectives.manage.files', ['objectiveId' => $request->objective->id])->with('success','Se elimino el archivo del repositorio del objetivo');
+    }
 
     public function viewObjectiveMap (Request $request){
       return view('objective.manage.map', ['objective' => $request->objective]);

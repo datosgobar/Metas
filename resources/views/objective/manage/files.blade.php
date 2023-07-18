@@ -27,6 +27,13 @@
           <p class="text-card text-smaller text-muted mb-0">{{ $file->mime }}</p>
         </div>
         <div class="ml-3 mt-2">
+          <a onclick="event.preventDefault();document.getElementById('delete-file-{{$file->id}}').submit();" class="card-link text-smaller text-danger is-clickable"><i class="fas fa-times fa-lg"></i></a>
+          <form id="delete-file-{{$file->id}}" action="{{route('objectives.manage.files.delete.form',['objectiveId' => $objective->id, 'fileId' => $file->id]) }}" method="POST" style="display: none;">
+            @method('DELETE')
+            @csrf
+        </form>
+        </div>
+        <div class="ml-3 mt-2">
           <a href="{{ asset($file->path) }}" class="card-link text-smaller"><i class="fas fa-download fa-lg"></i></a>
         </div>
     </div>
