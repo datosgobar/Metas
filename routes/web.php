@@ -224,6 +224,7 @@ Route::group([
         Route::post('/portada', [ObjectivePanelController::class, 'formObjectiveCover'])->name('cover.form');
         Route::get('/archivos', [ObjectivePanelController::class, 'viewObjectiveFiles'])->name('files');
         Route::post('/archivos', [ObjectivePanelController::class, 'formObjectiveFile'])->name('files.form');
+        Route::delete('/archivos/{fileId}/eliminar', [ObjectivePanelController::class, 'formDeleteObjectiveFile'])->name('files.delete.form');
         Route::get('/mapa', [ObjectivePanelController::class, 'viewObjectiveMap'])->name('map');
         Route::delete('/eliminar', [ObjectivePanelController::class, 'formDeleteObjective'])->name('delete.form');
         // Suscriptores
@@ -271,6 +272,7 @@ Route::group([
         Route::get('/metas/{goalId}/reportes/{reportId}/feedbacks/descargar', [ReportPanelController::class, 'downloadReportTestimonies'])->name('goals.reports.testimonies.download');
         Route::get('/metas/{goalId}/reportes/{reportId}/archivos', [ReportPanelController::class, 'viewReportFiles'])->name('goals.reports.files');
         Route::post('/metas/{goalId}/reportes/{reportId}/archivos', [ReportPanelController::class, 'formReportFile'])->name('goals.reports.files.form');
+        Route::delete('/metas/{goalId}/reportes/{reportId}/archivos/{fileId}/eliminar', [ReportPanelController::class, 'formDeleteReportFile'])->name('goals.reports.files.delete.form');
         Route::get('/metas/{goalId}/reportes/{reportId}/album', [ReportPanelController::class, 'viewReportAlbum'])->name('goals.reports.album');
         Route::post('/metas/{goalId}/reportes/{reportId}/album', [ReportPanelController::class, 'formReportAlbum'])->name('goals.reports.album.form');
         Route::delete('/metas/{goalId}/reportes/{reportId}/album/{pictureId}/eliminar', [ReportPanelController::class, 'formDeletePictureReport'])->name('goals.reports.album.delete.form');

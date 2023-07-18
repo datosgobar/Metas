@@ -16,7 +16,7 @@
     </div>
   </div>
  <div class="card border-light my-3">
-    <div class="card-body py-4 row justify-content-between">
+    <div class="card-body py-4 px-1 row justify-content-between">
       <div class="col-4 col-lg-2 text-center my-2 my-lg-0">
         <h6 class="font-weight-bold">Feedbacks</h6>
         <span class="h6"><i class="far fa-thumbs-up fa-fw"></i> {{$report->positive_testimonies}}</span>

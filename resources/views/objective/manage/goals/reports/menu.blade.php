@@ -29,7 +29,9 @@ $currentRoute = Route::currentRouteName();
 <h6 class="category"><i class="fas fa-cog fa-fw"></i>&nbsp;Administrar</h6>
 <div class="menu-link">
 <a href="{{ route('objectives.manage.goals.reports.edit', ['objectiveId' => $objective->id, 'goalId' => $goal->id, 'reportId' => $report->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.goals.reports.edit'  ? 'is-active' : null }}">Editar reporte</a>
+@isManager($objective->id)
 <a href="{{ route('objectives.manage.goals.reports.configuration', ['objectiveId' => $objective->id, 'goalId' => $goal->id, 'reportId' => $report->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.goals.reports.configuration'  ? 'is-active' : null }}">Configuración</a>
+@endisManager
 <a href="{{ route('objectives.manage.goals.reports.comments', ['objectiveId' => $objective->id, 'goalId' => $goal->id, 'reportId' => $report->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.goals.reports.comments'  ? 'is-active' : null }}">Comentarios</a>
 <a href="{{ route('objectives.manage.goals.reports.testimonies', ['objectiveId' => $objective->id, 'goalId' => $goal->id, 'reportId' => $report->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.goals.reports.testimonies'  ? 'is-active' : null }}">Feedbacks</a>
 <a href="{{ route('objectives.manage.goals.reports.album', ['objectiveId' => $objective->id, 'goalId' => $goal->id, 'reportId' => $report->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.goals.reports.album'  ? 'is-active' : null }}">Album de fotos</a>
