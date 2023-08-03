@@ -214,7 +214,7 @@ class ReportPanelController extends Controller
         return redirect()->route('objectives.manage.goals.reports.album', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('error','No se pudo agregar la foto al album del reporte');
       }
 
-      Log::channel('mysql')->info("[{$request->user()->fullname}] ha agregado una imagen \"{$picture->name}\" al album del reporte [{$request->report->title}] de la meta [{$request->goal->title}] del objetivo [{$request->objective->title}]", [
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha agregado una imagen \"{$imageFile->name}\" al album del reporte [{$request->report->title}] de la meta [{$request->goal->title}] del objetivo [{$request->objective->title}]", [
         'objective_id' => $request->objective->id,
         'objective_title' => $request->objective->title,
         'goal_title' => $request->goal->id,
@@ -295,11 +295,11 @@ class ReportPanelController extends Controller
         $exists = Storage::disk('reports')->exists('files/'.$fileName);
         $filePath = $file->storeAs('files',$fileName, 'reports');
         if($exists){
-          $existingFile = File::where('name',$fileName)->first();
-          $existingFile->name = $file->getClientOriginalName();
+          $existingFile = File::where('name',$file->getClientOriginalName())->first();
+          //$existingFile->name = $file->getClientOriginalName();
           $existingFile->size = $file->getSize();
           $existingFile->mime = $file->getMimeType();
-          $existingFile->path = '/storage/reports/'.$filePath;
+          //$existingFile->path = '/storage/reports/'.$filePath;
           $existingFile->save();
         } else {
           $saveFile = new File();
@@ -327,7 +327,7 @@ class ReportPanelController extends Controller
         'user_email' => $request->user()->email
         ]);
 
-      return redirect()->route('objectives.manage.goals.reports.files', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('success','Se agrego el archivo al repositorio del objetivo');
+      return redirect()->route('objectives.manage.goals.reports.files', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('success','Se agrego el archivo al repositorio del reporte');
     } 
 
     public function formDeleteReportFile (Request $request, $objectiveId, $goalId, $reportId, $fileId){
@@ -365,7 +365,7 @@ class ReportPanelController extends Controller
       ]);
       
       
-      return redirect()->route('objectives.manage.goals.reports.files', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('success','Se elimino el archivo del repositorio del objetivo');
+      return redirect()->route('objectives.manage.goals.reports.files', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('success','Se elimino el archivo del repositorio del reporte');
     }
 
     public function viewReportMap (Request $request){
