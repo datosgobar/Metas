@@ -442,11 +442,11 @@ class ObjectivePanelController extends Controller
         $exists = Storage::disk('objectives')->exists('files/'.$fileName);
         $filePath = $file->storeAs('files',$fileName, 'objectives');
         if($exists){
-          $existingFile = File::where('name',$fileName)->first();
-          $existingFile->name = $file->getClientOriginalName();
+          $existingFile = File::where('name',$file->getClientOriginalName())->first();
+          //$existingFile->name = $file->getClientOriginalName();
           $existingFile->size = $file->getSize();
           $existingFile->mime = $file->getMimeType();
-          $existingFile->path = 'storage/objectives/'.$filePath;
+          //$existingFile->path = 'storage/objectives/'.$filePath;
           $existingFile->save();
         } else {
           $saveFile = new File();
