@@ -7,6 +7,16 @@
     <i class="fas fa-info-circle"></i>&nbsp;Nota: El objetivo se encuentra <b>oculto</b>. <a href="{{route('objectives.manage.configuration', ['objectiveId' => $objective->id]) }}">Cambiar<i class="fas fa-arrow-right fa-fw"></i></a>
   </div>
   @endif
+  @isOnlyReporter($objective->id)
+  <div class="alert alert-primary">
+  <i class="fas fa-user-edit"></i>&nbsp;Tu rol te permite <b>Reportar</b> en metas del objetivo</a>
+  </div>
+  @endisOnlyReporter
+  @isOnlyManager($objective->id)
+  <div class="alert alert-primary">
+  <i class="fas fa-user-shield"></i>&nbsp;Tu rol te pemite <b>Coordinar</b> el objetivo</a>
+  </div>
+  @endisOnlyManager
   <div class="row">
     <div class="col-md-4 col-lg-3">
       <div id="menu" class="card shadow-sm rounded">

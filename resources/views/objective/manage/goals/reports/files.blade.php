@@ -4,7 +4,7 @@
 
 <section>
   <h3 class="is-700">Repositorio de archivos</h3>
-  <p class="lead">Aquí podrás encontrar y cargar todos los archivos vinculados a el reporte</p>
+  <p class="lead">Aquí podrás encontrar y cargar todos los archivos vinculados al reporte</p>
    <hr>
   <h5 class="font-weight-bold"><i class="fas fa-upload"></i> Nuevo archivo</h5>
   <p>Cargue su archivo haciendo clic en el campo para poder seleccionar. Intente no subir archivos de mucho peso.</p>
@@ -25,6 +25,13 @@
         <div class="flex-fill">
           <p class="mb-0 text-smaller">{{ $file->name }}</p>
           <p class="text-card text-smaller text-muted mb-0">{{ $file->mime }}</p>
+        </div>
+        <div class="ml-3 mt-2">
+          <a onclick="event.preventDefault();document.getElementById('delete-file-{{$file->id}}').submit();" class="card-link text-smaller text-danger is-clickable"><i class="fas fa-times fa-lg"></i></a>
+          <form id="delete-file-{{$file->id}}" action="{{route('objectives.manage.goals.reports.files.delete.form',['objectiveId' => $objective->id, 'goalId' => $goal->id, 'reportId' => $report->id, 'fileId' => $file->id]) }}" method="POST" style="display: none;">
+            @method('DELETE')
+            @csrf
+        </form>
         </div>
         <div class="ml-3 mt-2">
           <a href="{{ asset($file->path) }}" class="card-link text-smaller"><i class="fas fa-download fa-lg"></i></a>

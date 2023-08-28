@@ -6,7 +6,7 @@
   <div>
 
   <h1><i class="fas fa-cog fa-fw fa-spin"></i> Administración</h1>
-  <p class="lead">Este es el panel de administración de la plataforma Partícipes.</p>
+  <p class="lead">Este es el panel de administración de la plataforma Metas.</p>
   <hr class="my-4">
   <div class="card border-light my-3 text-center">
     <div class="card-body py-4 row justify-content-between">

@@ -18,7 +18,9 @@
   <h5 class="is-700 has-text-danger"><i class="fas fa-trash"></i> Eliminar reporte</h5>
   <p>Al eliminar el reporte, tenga en cuenta lo siguiente</p>
   <ul>
-    <li>El objetivo deja de ser visible publicamente</li>
+    <li>El reporte será eliminado permanentemente</li>
+    <li>Si el reporte es de tipo <b>AVANCE</b>, el progreso del indicador declarado <u>no se revierte</u> en el progreso de la meta, deberá hacerlo manualmente editandola</li>
+    <li>Si el reporte cambia el estado de la meta y decide eliminar el reporte, deberá revertir el estado manualmente</li>
   </ul>
   <form action="{{ route('objectives.manage.goals.reports.delete.form',['objectiveId' => $objective->id, 'goalId' => $goal->id, 'reportId' => $report->id]) }}" method="POST">
     @method('DELETE')

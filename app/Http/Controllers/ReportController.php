@@ -403,7 +403,7 @@ class ReportController extends Controller
             $testimony->report()->associate($report);
             $testimony->value = true;
             $testimony->save();
-            $msg = '¡Hemos guardado tu feedback con exito, muchas gracias!';
+            $msg = '¡Hemos guardado tu feedback con éxito, muchas gracias!';
         }
         return redirect()->route('reports.index', ['reportId' => $reportId])->with('success',$msg);
 

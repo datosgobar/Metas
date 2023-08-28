@@ -23,7 +23,7 @@
         @elseif($report->type == "milestone")
         <p class="text-smaller mb-0">Completado: Hito {{$report->milestone->order}}#: {{$report->milestone->title}}</p>
         @endif
-        <p class="text-smaller mb-0">Cambio de estado:  {{$report->status}}</p>
+        <p class="text-smaller mb-0">Cambio de estado:  {{$report->status_label}}</p>
       </div>
       <div class="text-center" style="min-width: 70px">
         @if($report->type == "post")
