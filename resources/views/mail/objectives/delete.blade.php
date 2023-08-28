@@ -1,7 +1,7 @@
 @component('mail::message')
 # ¡Atención {{$user->name}}! 👏👏
 
-Tenemos que informarte que han **eliminado** el objetivo **{{$objective->title}}** en Partícipes.
+Tenemos que informarte que han **eliminado** el objetivo **{{$objective->title}}** en Metas.
 
 Como estas suscripto al objetivo, nos parecio importante avisarte. 😮
 
